@@ -120,6 +120,14 @@ ul.specs li { padding-left: 1.4rem; position: relative; }
 ul.specs li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; background: var(--aqua); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span { font-family: var(--font-ui); font-size: 0.78rem; text-transform: uppercase; border: 2px solid var(--muted); color: var(--muted); padding: 1px 7px; }
+.pics { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.shot { margin: 0; border: 4px solid var(--ink); background: var(--deep); box-shadow: 6px 6px 0 var(--black); min-width: 0; }
+.shot img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.slots2 .shot img { aspect-ratio: 4 / 3; }
+.side .shot img { aspect-ratio: 4 / 3; }
+.shot figcaption { font-family: var(--font-ui); font-size: 0.8rem; text-transform: uppercase; color: var(--muted); padding: 6px 10px; border-top: 4px solid var(--ink); }
+.part.solo { grid-template-columns: minmax(0, 1fr); }
+.player.nopic { grid-template-columns: minmax(0, 1fr); }
 .slots2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 
 /* side quests */
@@ -145,7 +153,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
   .player { grid-template-columns: minmax(0, 1fr); }
   .player .slot { width: 180px; }
   .part { grid-template-columns: minmax(0, 1fr); }
-  .part .slot { width: 100%; max-width: 420px; }
+  .part .pics { width: 100%; max-width: 420px; }
   .sides { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .inv { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .inv dd { margin-bottom: 10px; }
@@ -177,8 +185,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
   <div class="wrap">
     <h1>Uplove Parhar</h1>
 
-    <div class="player box">
-      <div class="slot square"><b>PHOTO</b><span>your face goes here</span></div>
+    <div class="player box nopic">
       <div class="copy">
         <p class="hello">Hey! I'm Uplove. I build the electronics inside a submarine that drives itself.</p>
         <p>I study engineering at UBC Okanagan and lead the electrical team at Okanagan Marine Robotics. I like hardware that has to survive somewhere it really shouldn't, and underwater is about as unfriendly as it gets. I design the boards, write the firmware, and lately I've been teaching an FPGA to listen for underwater pingers.</p>
@@ -220,12 +227,14 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
       <div class="qbody">
         <p class="pitch">Ogopogo is our team's robot for RoboSub, and nobody drives it. It finds its own way around an underwater course, spots targets with a camera, and fires torpedoes without anyone touching a controller. I'm the electrical subteam lead, so power, the main controller and the firmware on every micro in the hull are my problem. I also mentor five teammates on PCB design and debugging.</p>
         <div class="slots2">
-          <div class="slot"><b>PHOTO</b><span>Ogopogo in the water</span></div>
-          <div class="slot"><b>PHOTO</b><span>inside the hull</span></div>
+          <figure class="shot"><img src="images/robosub-deck.jpg" alt="Teammates carrying Ogopogo along the pool deck at RoboSub" loading="lazy" style="object-position:50% 50%"><figcaption>Pool deck at RoboSub</figcaption></figure>
+          <figure class="shot"><img src="images/robosub-in-water.jpg" alt="Ogopogo being steadied in the practice pool at RoboSub" loading="lazy" style="object-position:50% 62%"><figcaption>In the water at RoboSub</figcaption></figure>
+          <figure class="shot"><img src="images/ogopogo-pool.jpg" alt="Ogopogo's clear electronics hull beside the pool" loading="lazy" style="object-position:50% 55%"><figcaption>Pool test day</figcaption></figure>
+          <figure class="shot"><img src="images/ogopogo-night-test.jpg" alt="Ogopogo lit up at the pool edge during a night test" loading="lazy" style="object-position:50% 48%"><figcaption>Late-night testing</figcaption></figure>
         </div>
 
         <div class="part">
-          <div class="slot"><b>PHOTO</b><span>main controller board</span></div>
+          <div class="pics"><figure class="shot"><img src="images/stm32-main-board.jpg" alt="Custom STM32F765 main controller board" loading="lazy" style="object-position:50% 50%"><figcaption>The STM32F765 main board</figcaption></figure><figure class="shot"><img src="images/nucleo-freertos.jpg" alt="STM32 Nucleo blinking an LED from a FreeRTOS task" loading="lazy" style="object-position:50% 50%"><figcaption>First FreeRTOS task on a Nucleo</figcaption></figure></div>
           <div class="txt">
             <h4>The main controller board</h4>
             <ul class="specs">
@@ -239,8 +248,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
           </div>
         </div>
 
-        <div class="part">
-          <div class="slot"><b>PHOTO</b><span>hydrophone front-end board</span></div>
+        <div class="part solo">
           <div class="txt">
             <h4>Hearing a pinger underwater <small>// in progress</small></h4>
             <ul class="specs">
@@ -254,7 +262,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
         </div>
 
         <div class="part">
-          <div class="slot"><b>PHOTO</b><span>PDU backplane and board stack</span></div>
+          <div class="pics"><figure class="shot"><img src="images/pdu-backplane.jpg" alt="Power distribution backplane with the board stack mounted" loading="lazy" style="object-position:50% 50%"><figcaption>PDU backplane and board stack</figcaption></figure><figure class="shot"><img src="images/gate-segmentation.jpg" alt="Underwater gate segmented in green for vision training data" loading="lazy" style="object-position:50% 42%"><figcaption>Auto-labelled gate for YOLO training</figcaption></figure></div>
           <div class="txt">
             <h4>Wiring up the whole sub <small>// 2026–27 design</small></h4>
             <ul class="specs">
@@ -279,8 +287,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
       <div class="qbody">
         <p class="pitch">This one started as a first-year class project. I built a buoy to keep an eye on Okanagan Lake, some City of Kelowna councillors and the Okanagan Basin Water Board got interested, and I pitched it to Dr. Peleato's lab at UBCO. Now I'm working with faculty and a PhD researcher on a cheap sensor that spots cyanobacteria, the stuff behind toxic algal blooms.</p>
 
-        <div class="part">
-          <div class="slot"><b>PHOTO</b><span>sensor prototype on the bench</span></div>
+        <div class="part solo">
           <div class="txt">
             <h4>The fluorescence sensor</h4>
             <ul class="specs">
@@ -295,7 +302,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
         </div>
 
         <div class="part">
-          <div class="slot"><b>PHOTO</b><span>the original buoy</span></div>
+          <div class="pics"><figure class="shot"><img src="images/buoy-pond.jpg" alt="The red 3D-printed buoy held over a campus pond" loading="lazy" style="object-position:50% 55%"><figcaption>Field test on campus</figcaption></figure><figure class="shot"><img src="images/buoy-team.jpg" alt="The team presenting the buoy at the CAD/CAM competition" loading="lazy" style="object-position:50% 60%"><figcaption>Showing it off with the team</figcaption></figure></div>
           <div class="txt">
             <h4>The buoy that started it</h4>
             <ul class="specs">
@@ -316,8 +323,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
         <div class="meta"><span class="badge">Solo build</span></div>
       </div>
       <div class="qbody">
-        <div class="part first">
-          <div class="slot"><b>PHOTO</b><span>the mini-sub</span></div>
+        <div class="part first solo">
           <div class="txt">
             <p class="pitch">One sub wasn't enough, so I built a small one of my own.</p>
             <ul class="specs">
@@ -351,6 +357,7 @@ footer .wrap { padding-block: 20px 36px; font-family: var(--font-ui); font-size:
         <p>Remote photoplethysmography, which is a long word for reading someone's pulse from regular camera video. No sensor on the skin.</p>
       </div>
       <div class="side box">
+        <figure class="shot"><img src="images/bracketbot.jpg" alt="The team with BracketBot at Hack the North" loading="lazy" style="object-position:50% 50%"><figcaption>Team BracketBot at Hack the North</figcaption></figure>
         <h3>BracketBot</h3>
         <p>Built at Hack the North.</p>
       </div>
